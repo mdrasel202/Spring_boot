@@ -1,12 +1,10 @@
 package com.rasel.first_project.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-@RestController
+@RestController //REST(json), SOAP(xml)
 @RequestMapping
+@CrossOrigin(origins = "*")
 public class DummyController {
     @GetMapping("/hello")
     public String hello(){
@@ -19,7 +17,11 @@ public class DummyController {
     }
 
     @GetMapping("/rasel")
-    public String rasel(@RequestParam String me, @RequestParam String father){
-        return "i'm "+me+". my father name"+father;
+    public String rasel(@RequestParam (name="xy") String me,
+                       @RequestParam (required = false) String father,
+                        @RequestParam (name="bb") int age){
+                         return "i'm "+me+father+". age" + age;
     }
+
+
 }
