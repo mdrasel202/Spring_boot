@@ -1,6 +1,7 @@
 package com.rasel.first_project.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -28,5 +29,9 @@ public class StudentService {
 
 	public void deleteById(int id) {
 		repository.deleteById(id);
+	}
+
+	public Optional<Student> findStudentById(int id) {
+		return repository.findById(id);
 	}
 }
