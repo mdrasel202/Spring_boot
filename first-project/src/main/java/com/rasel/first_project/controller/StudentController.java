@@ -15,9 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.rasel.first_project.model.Student;
 import com.rasel.first_project.service.StudentService;
 
+//@Slf4j
 @RestController
 @RequestMapping(value = "/student")
 public class StudentController {
+
+//	private static final Logger log = LoggerFactory.getLogger(StudentController.class);
 
 	private final StudentService service;
 
@@ -34,7 +37,7 @@ public class StudentController {
 
 	@GetMapping
 	public List<Student> getStudents() {
-
+//		log.info("Calling getStudents");
 		return service.getStudents();
 	}
 
