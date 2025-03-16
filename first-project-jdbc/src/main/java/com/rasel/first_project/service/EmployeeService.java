@@ -1,5 +1,6 @@
 package com.rasel.first_project.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -25,6 +26,16 @@ public class EmployeeService {
 	public Employee getEmpById(int id) {
 		Optional<Employee> byId = repository.findById(id);
 		return byId.get();
+	}
+
+	public List<Employee> getAllEmp() {
+		List<Employee> all = repository.findAll();
+		return all;
+	}
+
+	public void deleteById(int id) {
+		repository.deleteById(id);
+
 	}
 
 }

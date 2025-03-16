@@ -25,7 +25,7 @@ public class AppConfig {
 		dataSource.setMaxIdle(10);
 		dataSource.setMinIdle(5);
 		dataSource.setMaxWait(Duration.ofMillis(10000));
-		return dataSource();
+		return dataSource;
 	}
 
 	@Bean

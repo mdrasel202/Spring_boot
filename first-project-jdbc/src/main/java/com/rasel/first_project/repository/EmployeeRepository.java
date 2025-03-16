@@ -20,7 +20,6 @@ import org.springframework.stereotype.Repository;
 import com.rasel.first_project.model.Employee;
 
 @Repository
-
 public class EmployeeRepository {
 	private final JdbcTemplate jdbcTemplate;
 	private final SimpleJdbcInsert employeeInsert;
@@ -56,12 +55,12 @@ public class EmployeeRepository {
 	}
 
 	public List<Employee> findAll() {
-		String sql = "SELECT * FROM EmployeeSB";
+		String sql = "SELECT * FROM employee_spj";
 		return jdbcTemplate.query(sql, new EmployeeRowMapper());
 	}
 
 	public int update(Employee employee) {
-		String sql = "UPDATE EmployeeSB SET name = ?, email = ?, designation = ?, "
+		String sql = "UPDATE employee_spj SET name = ?, email = ?, designation = ?, "
 				+ "age = ?, address = ?, dob = ?, salary = ? WHERE id = ?";
 
 		return jdbcTemplate.update(sql, employee.getName(), employee.getEmail(), employee.getDesignation(),
@@ -69,18 +68,18 @@ public class EmployeeRepository {
 	}
 
 	public int deleteById(int id) {
-		String sql = "DELETE FROM EmployeeSB WHERE id = ?";
+		String sql = "DELETE FROM employee_spj WHERE id = ?";
 		return jdbcTemplate.update(sql, id);
 	}
 
 	public boolean existsById(int id) {
-		String sql = "SELECT COUNT(*) FROM EmployeeSB WHERE id = ?";
+		String sql = "SELECT COUNT(*) FROM employee_spj WHERE id = ?";
 		Integer count = jdbcTemplate.queryForObject(sql, Integer.class, id);
 		return count != null && count > 0;
 	}
 
 	public List<Employee> findByName(String name) {
-		String sql = "SELECT * FROM EmployeeSB WHERE name LIKE ?";
+		String sql = "SELECT * FROM employee_spj WHERE name LIKE ?";
 		return jdbcTemplate.query(sql, new EmployeeRowMapper(), "%" + name + "%");
 	}
 
@@ -96,7 +95,7 @@ public class EmployeeRepository {
 	public Employee saveAndReturnEmp(Employee employee) {
 		try (Connection connection = jdbcTemplate.getDataSource().getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(
-						"INSERT INTO EmployeeSB (name, email, designation, age, address, dob, salary) VALUES (?, ?, ?, ?, ?, ?, ?)",
+						"INSERT INTO employee_spj (name, email, designation, age, address, dob, salary) VALUES (?, ?, ?, ?, ?, ?, ?)",
 						Statement.RETURN_GENERATED_KEYS)) {
 
 			// Set the parameters
