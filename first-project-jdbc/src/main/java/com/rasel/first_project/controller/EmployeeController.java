@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,6 +39,13 @@ public class EmployeeController {
 		return empById;
 	}
 
+	// userName get
+	@GetMapping("find/{name}")
+	public List<Employee> getEmpUser(@PathVariable String name) {
+//		Employee getUSer = service.getEmpUser(name);
+		return service.getEmpUser(name);
+	}
+
 	@GetMapping
 	public List<Employee> getAllEmp() {
 		List<Employee> allEmp = service.getAllEmp();
@@ -47,6 +55,12 @@ public class EmployeeController {
 	@DeleteMapping("/{id}")
 	public void deleteById(@PathVariable int id) {
 		service.deleteById(id);
+	}
+
+	@PutMapping("/{id}")
+	public Employee updateEmp(@PathVariable int id, @RequestBody Employee employee) {
+		Employee update = service.updateEmp(id, employee);
+		return update;
 	}
 
 }

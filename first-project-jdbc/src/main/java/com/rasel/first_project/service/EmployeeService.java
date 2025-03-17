@@ -38,4 +38,15 @@ public class EmployeeService {
 
 	}
 
+	public Employee updateEmp(int id, Employee employee) {
+		employee.setId(id);
+		repository.update(employee);
+		return getEmpById(id);
+	}
+
+	public List<Employee> getEmpUser(String name) {
+//		Optional<Employee> byName = repository.findByName(name);
+		return repository.findByName(name);
+	}
+
 }
