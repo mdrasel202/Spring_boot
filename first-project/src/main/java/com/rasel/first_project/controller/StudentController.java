@@ -3,6 +3,7 @@ package com.rasel.first_project.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,12 +16,16 @@ import org.springframework.web.bind.annotation.RestController;
 import com.rasel.first_project.model.Student;
 import com.rasel.first_project.service.StudentService;
 
-//@Slf4j
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @RestController
 @RequestMapping(value = "/student")
 public class StudentController {
 
 //	private static final Logger log = LoggerFactory.getLogger(StudentController.class);
+	@Value("${custom.env}")
+	private String env;
 
 	private final StudentService service;
 
@@ -69,5 +74,10 @@ public class StudentController {
 				st.setDob(student.getDob());
 		}
 		return service.saveStudent(st);
+	}
+
+	@GetMapping("/{hello}")
+	public String hello() {
+		return "Hello enviroment " + env;
 	}
 }
